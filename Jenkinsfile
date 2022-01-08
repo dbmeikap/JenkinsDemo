@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage("Env Variables") {
+        stage("Clone") {
             steps {
-                sh "printenv | sort"
+                git branch: 'main', credentialsId: 'MyGitHub', url: 'https://github.com/dbmeikap/JenkinsDemo'
             }
         }
     }

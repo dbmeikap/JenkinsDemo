@@ -5,7 +5,7 @@ pipeline {
         stage("Clone") {
             steps {
                /* git branch: 'main', credentialsId: 'MyGitHub', url: 'https://github.com/dbmeikap/JenkinsDemo'*/
-                echo "The build number is ${env.BUIL_NUMBER}"
+                echo "The build number is ${env.BUILD_NUMBER}"
                
             }
         }

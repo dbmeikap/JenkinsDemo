@@ -1,12 +1,27 @@
 pipeline {
     agent any
+    
+    environment {
+        FOO = "bar"
+    }
 
     stages {
-        stage("Clone") {
+        stage("State1") {
+            environment {
+                NAME="Alan"
+            }
             steps {
-               /* git branch: 'main', credentialsId: 'MyGitHub', url: 'https://github.com/dbmeikap/JenkinsDemo'*/
-                echo "The build number is ${env.BUILD_NUMBER}"
-               
+                echo "FOO = ${env.FOO}"
+                echo "NAME = ${env.NAME}"
+                
+                script {
+                   env.TEST_VARIABLE="some test value"
+                }
+                echo "TEST_VARIABLE = ${env.TEST_VARIABLE}"
+                
+                withEnv(["ANOTHER_ENV_VAR=here is some value"]) {
+                   echo "ANOTHER_ENV_VAR = ${env.ANOTHER_ENV_VAR}"
+                }
             }
         }
     }
